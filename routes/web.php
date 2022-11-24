@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +17,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dogs', [DogController::class, 'index'])->name('dogs.index');
+
+Route::get('/dogs/create', [DogController::class,'create'])->name('dogs.create');
+
+Route::get('/dogs/{dog}/editar', [DogController::class,'edit'])->name('dogs.edit');
+Route::patch('/dogs/{dog}', [DogController::class,'update'])->name('dogs.update');
+
+Route::post('/dogs', [DogController::class,'store'])->name('dogs.store');
+Route::get('/dogs/{dog}', [DogController::class,'show'])->name('dogs.show');
+
+Route::delete('/dogs/{dog}', [DogController::class,'destroy'])->name('dogs.destroy');
